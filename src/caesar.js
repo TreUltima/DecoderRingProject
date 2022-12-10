@@ -9,15 +9,14 @@ const caesarModule = (function () {
   function caesar(input, shift, encode = true) {
     const alpha = "abcdefghijklmnopqrstuvwxyz";
     const alphabet = alpha.split("")
-    if (!shift || shift == 0 || shift>=alphabet.length || shift<=(alphabet.length) * -1) return false;
+    if (!shift || shift === 0 || shift >= alphabet.length || shift <= -alphabet.length) return false;
     if (encode === false) {
        shift = -shift 
       }
-    inputLower = input.toLowerCase();
+    const inputLower = input.toLowerCase();
     let msg = "";
       //Loop input through alphabet to code messages
-     for (let i = 0; i < inputLower.length; i++)
-      {
+     for (let i = 0; i < inputLower.length; i++){
         const char = inputLower[i]; 
         if (!alphabet.includes(inputLower[i])){msg += inputLower[i]}
         //Loop alphabet
