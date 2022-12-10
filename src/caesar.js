@@ -9,26 +9,24 @@ const caesarModule = (function () {
   function caesar(input, shift, encode = true) {
     const alpha = "abcdefghijklmnopqrstuvwxyz";
     const alphabet = alpha.split("")
-    if (!shift || shift === 0 || shift >= alphabet.length || shift <= -alphabet.length) return false;
     if (encode === false) {
        shift = -shift 
       }
+    if (!shift || shift === 0 || shift >= alphabet.length || shift <= -alphabet.length) return false;
     const inputLower = input.toLowerCase();
     let msg = "";
       //Loop input through alphabet to code messages
      for (let i = 0; i < inputLower.length; i++){
-        const char = inputLower[i]; 
-        if (!alphabet.includes(inputLower[i])){msg += inputLower[i]}
+        let idx = inputLower[i]
+        if (!alphabet.includes(idx)){msg += idx}
         //Loop alphabet
-        for(let i = 0; i < alphabet.length; i++)
-          {
-            if (char == alphabet[i])
-            {
+        for(let i = 0; i < alphabet.length; i++){
+            if (idx === alphabet[i]){
               //For shifting at end of alphabet
-              if(i+shift>=alphabet.length){msg += alphabet[(i+shift)-alphabet.length]}
+              if(i + shift >= alphabet.length){msg += alphabet[(i + shift) - alphabet.length]}
               //for shifting at the beginning of alphabet
-              else if(i+shift<0){msg += alphabet[(i+shift) + 26]}
-              else{msg += alphabet[i+shift]}
+              else if(i + shift < 0){msg += alphabet[(i + shift) + 26]}
+              else{msg += alphabet[i + shift]}
             }
           }
       } 
